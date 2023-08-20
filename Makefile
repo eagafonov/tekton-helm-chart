@@ -56,6 +56,10 @@ ifneq ($(CHART_VERSION),latest)
 	sed -i.bak "s/^appVersion:.*/appVersion: ${CHART_VERSION}/" ${CHART_DIR}/Chart.yaml
 endif
 
+refetch:
+	export CHART_VERSION=`yq .appVersion ${CHART_DIR}/Chart.yaml` && \
+		make fetch
+
 version:
 	# Increment Chart.yaml version for minor changes to helm chart
 	yq eval '.version = "$(RELEASE_VERSION)"' -i charts/tekton-pipeline/Chart.yaml
