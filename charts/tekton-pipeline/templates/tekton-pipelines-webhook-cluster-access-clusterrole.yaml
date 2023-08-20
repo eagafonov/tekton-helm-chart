@@ -15,7 +15,6 @@ rules:
     resourceNames:
       - pipelines.tekton.dev
       - pipelineruns.tekton.dev
-      - runs.tekton.dev
       - tasks.tekton.dev
       - clustertasks.tekton.dev
       - taskruns.tekton.dev
