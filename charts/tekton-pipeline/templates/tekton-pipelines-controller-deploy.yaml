@@ -6,12 +6,12 @@ metadata:
     app.kubernetes.io/instance: default
     app.kubernetes.io/name: controller
     app.kubernetes.io/part-of: tekton-pipelines
-    app.kubernetes.io/version: v0.45.0
+    app.kubernetes.io/version: v0.46.0
       {{- with .Values.controller.deployment.labels }}
         {{- toYaml . | nindent 4 }}
       {{- end}}
-    pipeline.tekton.dev/release: v0.45.0
-    version: v0.45.0
+    pipeline.tekton.dev/release: v0.46.0
+    version: v0.46.0
   name: tekton-pipelines-controller
 spec:
   replicas: 1
@@ -34,12 +34,12 @@ spec:
         app.kubernetes.io/instance: default
         app.kubernetes.io/name: controller
         app.kubernetes.io/part-of: tekton-pipelines
-        app.kubernetes.io/version: v0.45.0
+        app.kubernetes.io/version: v0.46.0
           {{- with .Values.controller.pod.labels }}
             {{- toYaml . | nindent 8 }}
           {{- end}}
-        pipeline.tekton.dev/release: v0.45.0
-        version: v0.45.0
+        pipeline.tekton.dev/release: v0.46.0
+        version: v0.46.0
     spec:
       affinity:
           {{- with .Values.controller.affinity }}
@@ -47,20 +47,14 @@ spec:
           {{- end }}
       containers:
       - args:
-        - -git-image
-        - gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/git-init:v0.45.0@sha256:8ab0f58d8381b0b71f5b2bae1f63522989d739e3154d8cab1bacfa0ef5317214
         - -entrypoint-image
-        - gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/entrypoint:v0.45.0@sha256:9e1ed138383b2266a7916cd3a501fb50335da36d4fd72fd0a4de2aac142cf4b4
+        - gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/entrypoint:v0.46.0@sha256:36114bab6037563667aa0620037e7a063ffe00f432866a293807f8029eddd645
         - -nop-image
-        - gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/nop:v0.45.0@sha256:3314b1f7222c41ab6e191bb4d4e13b519cc1c2f71f66e29ce86d9eaf611808f0
+        - gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/nop:v0.46.0@sha256:1b9ad2522b5a5ea0c51ac43e2838ea1535de9d9c82c7864ed9a88553db434a29
         - -sidecarlogresults-image
-        - gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/sidecarlogresults:v0.45.0@sha256:3e2d834c4820f06c44a79362d17b847bb0f108a385a932e5f5fdb32160b38b3a
-        - -imagedigest-exporter-image
-        - gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/imagedigestexporter:v0.45.0@sha256:80d09ba9f2aa293a0d4b93ff44a56d6cbeb7669cf4108b63d8a3a94c0b446509
+        - gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/sidecarlogresults:v0.46.0@sha256:4bc1d0dc796a2a85a72d431344b80a2ac93f259fdd199d17ebc6d31b52a571d6
         - -workingdirinit-image
-        - gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/workingdirinit:v0.45.0@sha256:52fe1b196c2f473cde962745768787ad48b9fd15544a5d2c69bd40c2ade0a461
-        - -gsutil-image
-        - gcr.io/google.com/cloudsdktool/cloud-sdk@sha256:27b2c22bf259d9bc1a291e99c63791ba0c27a04d2db0a43241ba0f1f20f4067f
+        - gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/workingdirinit:v0.46.0@sha256:b066c05c1565675a573563557d2cd91bea48217091a3beda639f0dbdea5910bc
         - -shell-image
         - cgr.dev/chainguard/busybox@sha256:19f02276bf8dbdd62f069b922f10c65262cc34b710eea26ff928129a736be791
         - -shell-image-win
@@ -86,8 +80,6 @@ spec:
           value: config-leader-election
         - name: CONFIG_SPIRE
           value: config-spire
-        - name: CONFIG_TRUSTED_RESOURCES_NAME
-          value: config-trusted-resources
         - name: SSL_CERT_FILE
           value: /etc/config-registry-cert/cert
         - name: SSL_CERT_DIR
@@ -137,9 +129,6 @@ spec:
           name: config-logging
         - mountPath: /etc/config-registry-cert
           name: config-registry-cert
-        - mountPath: /etc/verification-secrets
-          name: verification-secrets
-          readOnly: true
         image: {{ .Values.controller.deployment.image }}
       nodeSelector:
           {{- with .Values.controller.nodeSelector }}
@@ -157,7 +146,3 @@ spec:
       - configMap:
           name: config-registry-cert
         name: config-registry-cert
-      - name: verification-secrets
-        secret:
-          optional: true
-          secretName: verification-secrets
