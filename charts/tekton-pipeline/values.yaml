@@ -13,7 +13,7 @@ serviceaccount:
 # Values for tekton-pipelines-controller
 controller:
   deployment:
-    image: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/controller:v0.43.0@sha256:f71d7dc4fa4760f0cd3236e4869d40b163ddb48ecb7a81af8c84b45ba63db669
+    image: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/controller:v0.43.1@sha256:893d018568ff511c57288572a1303b6bec5421fb04aa64ca1f83595da9abd3e5
     labels: {}
   pod:
     labels: {}
