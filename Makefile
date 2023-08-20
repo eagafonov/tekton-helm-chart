@@ -17,6 +17,8 @@ endif
 	jx gitops rename -d ${CHART_DIR}/templates
     # Remove tekton-pipelines-resolvers-ns
 	rm -r $(CHART_DIR)/templates/tekton-pipelines-resolvers-ns.yaml
+	# Remove tekton-pipelines-ns
+	rm -r $(CHART_DIR)/templates/tekton-pipelines-ns.yaml
 	# Amend subjects.namespace with release.namespace
 	find $(CHART_DIR)/templates -type f \( -name "*-crb.yaml" -o -name "*-rb.yaml" \) -exec yq -i '(.subjects[] | select(has("namespace"))).namespace = "{{ .Release.Namespace }}"' "{}" \;
 	# Remove namespace from metadata to force with helm install
