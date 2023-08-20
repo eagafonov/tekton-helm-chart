@@ -63,10 +63,12 @@ refetch:
 version:
 	# Increment Chart.yaml version for minor changes to helm chart
 	yq eval '.version = "$(RELEASE_VERSION)"' -i charts/tekton-pipeline/Chart.yaml
+
 build:
 	rm -rf Chart.lock
-	#helm dependency build
-	helm lint ${NAME}
+	helm dependency build ${CHART_DIR}
+	helm lint ${CHART_DIR}
+	helm package ${CHART_DIR}
 
 install: clean build
 	helm install . --name ${NAME}
