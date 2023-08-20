@@ -23,6 +23,8 @@ endif
 	find $(CHART_DIR)/templates -type f \( -name "*-crb.yaml" -o -name "*-rb.yaml" \) -exec yq -i '(.subjects[] | select(has("namespace"))).namespace = "{{ .Release.Namespace }}"' "{}" \;
 	# Remove namespace from metadata to force with helm install
 	find $(CHART_DIR)/templates -type f -name "*.yaml" -exec yq -i eval 'del(.metadata.namespace)' "{}" \;
+	# amend remaining namespace: tekton-pipelines to  with release.namespace
+	find $(CHART_DIR)/templates -type f -name "*.yaml" -exec sed -i "s/namespace: tekton-pipelines/namespace: '{{ .Release.Namespace }}'/" {} \;
 	# Move content of containers.resources from tekton-pipelines-remote-resolvers-deploy.yaml to remoteresolver.resources
 	yq -i '.remoteresolver.resources = load("$(CHART_DIR)/templates/tekton-pipelines-remote-resolvers-deploy.yaml").spec.template.spec.containers[].resources' $(CHART_DIR)/values.yaml
 	yq e -i 'del(.spec.template.spec.containers[].resources)' $(CHART_DIR)/templates/tekton-pipelines-remote-resolvers-deploy.yaml
