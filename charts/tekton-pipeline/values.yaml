@@ -13,7 +13,7 @@ serviceaccount:
 # Values for tekton-pipelines-controller
 controller:
   deployment:
-    image: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/controller:v0.47.3@sha256:cfbca9c19a8e7fe4f68b80499c9d921a03240ae2185d6f7d536c33b1177138ca
+    image: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/controller:v0.48.0@sha256:c2442a0f832ce36afd1b2a7a2d971a30be4aae92ebc384c8ee24f073688bc61e
     labels: {}
   pod:
     labels: {}
@@ -217,9 +217,14 @@ featureFlags:
   # and PipelineRun status. This field contains metadata about resources used
   # in the TaskRun/PipelineRun such as the source from where a remote Task/Pipeline
   # definition was fetched.
-  enable-provenance-in-status: "false"
+  enable-provenance-in-status: "true"
   # Setting this flag will determine how Tekton pipelines will handle non-falsifiable provenance.
   # If set to "spire", then SPIRE will be used to ensure non-falsifiable provenance.
   # If set to "none", then Tekton will not have non-falsifiable provenance.
   # This is an experimental feature and thus should still be considered an alpha feature.
   enforce-nonfalsifiablity: "none"
+  # Setting this flag will determine how Tekton pipelines will handle extracting results from the task.
+  # Acceptable values are "termination-message" or "sidecar-logs".
+  # "sidecar-logs" is an experimental feature and thus should still be considered
+  # an alpha feature.
+  results-from: "termination-message"

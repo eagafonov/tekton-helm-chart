@@ -6,12 +6,12 @@ metadata:
     app.kubernetes.io/instance: default
     app.kubernetes.io/name: controller
     app.kubernetes.io/part-of: tekton-pipelines
-    app.kubernetes.io/version: v0.47.3
+    app.kubernetes.io/version: v0.48.0
       {{- with .Values.controller.deployment.labels }}
         {{- toYaml . | nindent 4 }}
       {{- end}}
-    pipeline.tekton.dev/release: v0.47.3
-    version: v0.47.3
+    pipeline.tekton.dev/release: v0.48.0
+    version: v0.48.0
   name: tekton-pipelines-controller
 spec:
   replicas: 1
@@ -34,12 +34,12 @@ spec:
         app.kubernetes.io/instance: default
         app.kubernetes.io/name: controller
         app.kubernetes.io/part-of: tekton-pipelines
-        app.kubernetes.io/version: v0.47.3
+        app.kubernetes.io/version: v0.48.0
           {{- with .Values.controller.pod.labels }}
             {{- toYaml . | nindent 8 }}
           {{- end}}
-        pipeline.tekton.dev/release: v0.47.3
-        version: v0.47.3
+        pipeline.tekton.dev/release: v0.48.0
+        version: v0.48.0
     spec:
       affinity:
           {{- with .Values.controller.affinity }}
@@ -48,13 +48,13 @@ spec:
       containers:
       - args:
         - -entrypoint-image
-        - gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/entrypoint:v0.47.3@sha256:3f9bc08c3d61c47fa43e6225aaa0df83ee26de73b37a247c8a4ed55392400bc2
+        - gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/entrypoint:v0.48.0@sha256:6ea5a0dd712b1c2204473fbf809432c31df8f062135f84c6ccf02d37cdfd9e76
         - -nop-image
-        - gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/nop:v0.47.3@sha256:92755ff9cdaacbdbee440f1e9b6b7e43cbc89b1882d0f646ed6e5658325730c5
+        - gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/nop:v0.48.0@sha256:3fdf8f51abaaf2b2cb3f583545c83204c7948f44d5bc3badffb322355e42caaa
         - -sidecarlogresults-image
-        - gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/sidecarlogresults:v0.47.3@sha256:145904e64c1aa4cf39d2ff4fbf2125c76d0627fcbdcc5dd24b7e208a28cb9638
+        - gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/sidecarlogresults:v0.48.0@sha256:1bb043c7f27598de1e5a632b54ccff45a05aac420005298f3b50c4ec4cbf1f96
         - -workingdirinit-image
-        - gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/workingdirinit:v0.47.3@sha256:602ba2e60b059f9227f0e1604c750b0afc016064d718a6f0c22ae34cb6b14103
+        - gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/workingdirinit:v0.48.0@sha256:4b2917f4c4a429a10c2828b6ff8eb8e94ffa8eb321375294632c1467cf2de61d
         - -shell-image
         - cgr.dev/chainguard/busybox@sha256:19f02276bf8dbdd62f069b922f10c65262cc34b710eea26ff928129a736be791
         - -shell-image-win
