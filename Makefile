@@ -73,6 +73,9 @@ build:
 install: clean build
 	helm upgrade --install --namespace tekton-pipelines --create-namespace ${NAME} ${CHART_DIR}
 
+uninstall:
+	helm uninstall -n tekton-pipelines tekton-pipeline
+
 upgrade: clean build
 	helm upgrade ${NAME} .
 
