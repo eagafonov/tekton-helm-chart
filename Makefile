@@ -80,6 +80,7 @@ delete:
 	helm delete --purge ${NAME}
 
 clean:
+	git clean -xdf charts/tekton-pipeline
 
 release: clean
 	helm dependency build
