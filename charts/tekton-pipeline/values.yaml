@@ -13,7 +13,7 @@ serviceaccount:
 # Values for tekton-pipelines-controller
 controller:
   deployment:
-    image: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/controller:v0.43.2@sha256:e1a541216f70bfc519739e056111d0f69e7959913e28ccbf98ce9fe2fd0dd406
+    image: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/controller:v0.44.0@sha256:51e4c16fc4d0b18912106ff7fe37cc24c0667de6af468cdd1a9e9dc174039de1
     labels: {}
   pod:
     labels: {}
@@ -198,9 +198,6 @@ featureFlags:
   # This is an experimental feature and thus should still be considered
   # an alpha feature.
   enable-tekton-oci-bundles: "false"
-  # Setting this flag to "true" enables the use of custom tasks from
-  # within pipelines.
-  enable-custom-tasks: "true"
   # Setting this flag will determine which gated features are enabled.
   # Acceptable values are "stable", "beta", or "alpha".
   enable-api-fields: "stable"
@@ -220,11 +217,11 @@ featureFlags:
   # `PipelineRun` status. Set it to "minimal" to populate the `ChildReferences` field in the
   # `PipelineRun` status with name, kind, and API version information for each `TaskRun` and
   # `Run` in the `PipelineRun` instead. Set it to "both" to do both.
-  embedded-status: "full"
+  embedded-status: "minimal"
   # Setting this flag will determine the version for custom tasks created by PipelineRuns.
   # Acceptable values are "v1beta1" and "v1alpha1".
-  # The default is "v1alpha1".
-  custom-task-version: "v1alpha1"
+  # The default is "v1beta1".
+  custom-task-version: "v1beta1"
 leaderElectionConfig:
   _example: |
     ################################
