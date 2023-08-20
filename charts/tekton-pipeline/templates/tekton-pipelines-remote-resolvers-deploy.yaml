@@ -6,9 +6,9 @@ metadata:
     app.kubernetes.io/instance: default
     app.kubernetes.io/name: resolvers
     app.kubernetes.io/part-of: tekton-pipelines
-    app.kubernetes.io/version: v0.44.0
-    pipeline.tekton.dev/release: v0.44.0
-    version: v0.44.0
+    app.kubernetes.io/version: v0.44.2
+    pipeline.tekton.dev/release: v0.44.2
+    version: v0.44.2
   name: tekton-pipelines-remote-resolvers
 spec:
   replicas: 1
@@ -26,9 +26,9 @@ spec:
         app.kubernetes.io/instance: default
         app.kubernetes.io/name: resolvers
         app.kubernetes.io/part-of: tekton-pipelines
-        app.kubernetes.io/version: v0.44.0
-        pipeline.tekton.dev/release: v0.44.0
-        version: v0.44.0
+        app.kubernetes.io/version: v0.44.2
+        pipeline.tekton.dev/release: v0.44.2
+        version: v0.44.2
     spec:
       affinity:
           {{- with .Values.remoteresolver.affinity }}
@@ -63,7 +63,7 @@ spec:
           value: tekton.dev/resolution
         - name: ARTIFACT_HUB_API
           value: https://artifacthub.io/
-        image: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/resolvers:v0.44.0@sha256:9e156710dc7730487640faa798a7f70e32f15bd31ec9f50cab2c7f5e154a3dfe
+        image: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/resolvers:v0.44.2@sha256:d2c32f4cf97fb822c0866dd19c56d6b7d0543b97ef59d3bd4405c0a3fa4a3f25
         name: controller
         ports:
         - containerPort: 9090
