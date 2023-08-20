@@ -33,6 +33,9 @@ endif
 	# Move content of data: from git-resolver-config-cm.yaml to gitResolverConfig: in values.yaml
 	yq -i '.gitResolverConfig = load("$(CHART_DIR)/templates/git-resolver-config-cm.yaml").data' $(CHART_DIR)/values.yaml
 	yq -i '.data = null' $(CHART_DIR)/templates/git-resolver-config-cm.yaml
+	# Move controller image to values.yaml
+	export CONTROLLER_IMAGE=`yq .spec.template.spec.containers[0].image charts/tekton-pipeline/templates/tekton-pipelines-controller-deploy.yaml` && \
+		yq -i '.controller.deployment.image=env(CONTROLLER_IMAGE)' $(CHART_DIR)/values.yaml
 	# Remove image: from tekton-pipelines-controller-deploy
 	yq -i 'del(.spec.template.spec.containers[].image)' $(CHART_DIR)/templates/tekton-pipelines-controller-deploy.yaml
 	# Make node affinity configurable
