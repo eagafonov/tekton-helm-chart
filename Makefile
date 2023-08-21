@@ -40,6 +40,9 @@ endif
 	# Move content of data: from config-leader-election-cm.yaml to leaderElectionConfig: in values.yaml
 	yq -i '.leaderElectionConfig = load("$(CHART_DIR)/templates/config-leader-election-cm.yaml").data' $(CHART_DIR)/values.yaml
 	yq -i '.data = null' $(CHART_DIR)/templates/config-leader-election-cm.yaml
+	# Move content of data: from config-observability-cm.yaml to observabilityConfig: in values.yaml
+	yq -i '.observabilityConfig = load("$(CHART_DIR)/templates/config-observability-cm.yaml").data' $(CHART_DIR)/values.yaml
+	yq -i '.data = null' $(CHART_DIR)/templates/config-observability-cm.yaml
 	# Move controller image to values.yaml
 	export CONTROLLER_IMAGE=`yq .spec.template.spec.containers[0].image charts/tekton-pipeline/templates/tekton-pipelines-controller-deploy.yaml` && \
 		yq -i '.controller.deployment.image=env(CONTROLLER_IMAGE)' $(CHART_DIR)/values.yaml
