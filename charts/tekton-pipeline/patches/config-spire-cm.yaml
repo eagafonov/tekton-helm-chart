@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-spire
+data:
+  helmTemplateRemoveMe: |
+    {{- toYaml .Values.spireConfig | nindent 2 }}

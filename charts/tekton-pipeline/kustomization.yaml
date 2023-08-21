@@ -10,6 +10,7 @@ resources:
 - templates/tekton-pipelines-remote-resolvers-deploy.yaml
 - templates/config-leader-election-cm.yaml
 - templates/config-observability-cm.yaml
+- templates/config-spire-cm.yaml
 
 patchesStrategicMerge:
 - patches/tekton-pipelines-controller-deploy.yaml
@@ -20,3 +21,4 @@ patchesStrategicMerge:
 - patches/tekton-pipelines-remote-resolvers-deploy.yaml
 - patches/config-leader-election-cm.yaml
 - patches/config-observability-cm.yaml
+- patches/config-spire-cm.yaml
