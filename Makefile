@@ -46,6 +46,9 @@ endif
 	# Move content of data: from config-spire-cm.yaml to spireConfig: in values.yaml
 	yq -i '.spireConfig = load("$(CHART_DIR)/templates/config-spire-cm.yaml").data' $(CHART_DIR)/values.yaml
 	yq -i '.data = null' $(CHART_DIR)/templates/config-spire-cm.yaml
+	# Move content of data: from config-events-cm.yaml to eventsConfig: in values.yaml
+	yq -i '.eventsConfig = load("$(CHART_DIR)/templates/config-events-cm.yaml").data' $(CHART_DIR)/values.yaml
+	yq -i '.data = null' $(CHART_DIR)/templates/config-events-cm.yaml
 	# Move controller image to values.yaml
 	export CONTROLLER_IMAGE=`yq .spec.template.spec.containers[0].image charts/tekton-pipeline/templates/tekton-pipelines-controller-deploy.yaml` && \
 		yq -i '.controller.deployment.image=env(CONTROLLER_IMAGE)' $(CHART_DIR)/values.yaml
