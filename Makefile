@@ -48,7 +48,7 @@ endif
 	yq -i '.controller.affinity.nodeAffinity = load("$(CHART_DIR)/templates/tekton-pipelines-controller-deploy.yaml").spec.template.spec.affinity.nodeAffinity' $(CHART_DIR)/values.yaml
 	yq -i 'del(.spec.template.spec.affinity.nodeAffinity)' $(CHART_DIR)/templates/tekton-pipelines-controller-deploy.yaml
 	# kustomize the resources to include some helm template blocs
-	kustomize build ${CHART_DIR} | sed '/helmTemplateRemoveMe/d' > ${CHART_DIR}/templates/resource.yaml
+	kustomize build ${CHART_DIR} > ${CHART_DIR}/templates/resource.yaml && sed -i '/helmTemplateRemoveMe/d' ${CHART_DIR}/templates/resource.yaml
 	jx gitops split -d ${CHART_DIR}/templates
 	jx gitops rename -d ${CHART_DIR}/templates
 	cp src/templates/* ${CHART_DIR}/templates
