@@ -8,6 +8,7 @@ resources:
 - templates/feature-flags-cm.yaml
 - templates/git-resolver-config-cm.yaml
 - templates/tekton-pipelines-remote-resolvers-deploy.yaml
+- templates/config-leader-election-cm.yaml
 
 patchesStrategicMerge:
 - patches/tekton-pipelines-controller-deploy.yaml
@@ -16,3 +17,4 @@ patchesStrategicMerge:
 - patches/feature-flags-cm.yaml
 - patches/git-resolver-config-cm.yaml
 - patches/tekton-pipelines-remote-resolvers-deploy.yaml
+- patches/config-leader-election-cm.yaml
