@@ -20,6 +20,7 @@ you can then do
 helm search repo tekton
 ```
 
-## View the YAML
+## Links
 
-You can have a look at the underlying charts YAML at: [index.yaml](index.yaml)
+* You can have a look at the underlying charts YAML at: [index.yaml](index.yaml)
+* Source and tools on [GitHub](https://github.com/eagafonov/tekton-helm-chart)
