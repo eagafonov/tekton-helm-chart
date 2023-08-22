@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-logging
+data:
+  helmTemplateRemoveMe: |
+    {{- toYaml .Values.loggingConfig | nindent 2 }}
