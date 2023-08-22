@@ -3,9 +3,9 @@ entries:
   tekton-pipeline:
   - apiVersion: v1
     appVersion: 0.50.1
-    created: "2023-08-21T17:53:57.379856876-07:00"
+    created: "2023-08-21T18:21:16.774371184-07:00"
     description: A Helm chart for Tekton Pipelines
-    digest: 5d44077e7db328b0646053f72a736792372a477f8895d3bf469550c295589249
+    digest: 3a8b267780582da4533c1292f94a6e836a897ec6b4d02c7d179175120c56b52b
     home: https://github.com/eagafonov/tekton-helm-chart
     name: tekton-pipeline
     urls:
@@ -13,7 +13,7 @@ entries:
     version: 1.0.3-dev
   - apiVersion: v1
     appVersion: 0.50.1
-    created: "2023-08-21T17:53:57.378644467-07:00"
+    created: "2023-08-21T18:21:16.773088212-07:00"
     description: A Helm chart for Tekton Pipelines
     digest: 9a4119853e4f11ab8df529dba946ba66409b0f8f05415cde797f933e21e57692
     home: https://github.com/eagafonov/tekton-helm-chart
@@ -23,9 +23,19 @@ entries:
     version: 1.0.2-dev
   - apiVersion: v1
     appVersion: 0.38.0
-    created: "2023-08-21T17:53:57.37744945-07:00"
+    created: "2023-08-21T18:21:16.771822191-07:00"
     description: A Helm chart for Tekton Dashboard
-    digest: f8b5340aaca2b061d8f557436b39c171d9477adca90956920f6adb9bd9fd3542
+    digest: a73b839138fb8dbd044dd93ccb16b8138ac263362e4ed71b85f4bf7d46362ccc
+    home: https://github.com/eagafonov/tekton-helm-chart
+    name: tekton-pipeline
+    urls:
+    - https://eagafonov.github.io/tekton-helm-chart/tekton-pipeline-0.0.2-dev.tgz
+    version: 0.0.2-dev
+  - apiVersion: v1
+    appVersion: 0.38.0
+    created: "2023-08-21T18:21:16.771621482-07:00"
+    description: A Helm chart for Tekton Dashboard
+    digest: bb4d14e479f48569993cd503ee3a58a40c76f79f682c8a702d7f2193581ed829
     home: https://github.com/eagafonov/tekton-helm-chart
     name: tekton-pipeline
     urls:
@@ -34,12 +44,12 @@ entries:
   tekton-trigger:
   - apiVersion: v1
     appVersion: 0.24.1
-    created: "2023-08-21T17:53:57.380275456-07:00"
+    created: "2023-08-21T18:21:16.774803561-07:00"
     description: A Helm chart for Tekton Trigger
-    digest: 385fb38f8c2730f166354176307779fe95ae2141feb68eb109454304a6290641
+    digest: dbe11bff2b43ec1226502d120be354781a4fde79aa35e9dea9f8d9d286ece613
     home: https://github.com/eagafonov/tekton-helm-chart
     name: tekton-trigger
     urls:
     - https://eagafonov.github.io/tekton-helm-chart/tekton-trigger-0.0.1-dev.tgz
     version: 0.0.1-dev
-generated: "2023-08-21T17:53:57.377192265-07:00"
+generated: "2023-08-21T18:21:16.771328068-07:00"
