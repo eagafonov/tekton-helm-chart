@@ -1,8 +1,11 @@
-# tekton-helm-chart
+# (unofficial) tekton-helm-chart
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-CDF official helm chart for [Tekton Pipelines](https://github.com/tektoncd/pipeline).
+This is **unofficial** chart for [Tekton Pipelines](https://github.com/tektoncd/operator), [Tekton Pipelines](https://github.com/tektoncd/pipeline),
+[Tekton Dashboard](https://github.com/tektoncd/dashboard) and [Tekton Trigger](https://github.com/tektoncd/trigger)
+
+It is based on the [official chart by CDF](https://github.com/cdfoundation/tekton-helm-chart)
 
 ## Usage
 
@@ -65,4 +68,4 @@ See chart [readme](charts/tekton-pipeline/README.md) and [values.yaml](charts/te
 
 ## Repository
 
-You can view the YAML at [index.yaml](https://cdfoundation.github.io/tekton-helm-chart/index.yaml).
+You can view the YAML at [index.yaml](https://eagafonov.github.io/tekton-helm-chart/index.yaml).
