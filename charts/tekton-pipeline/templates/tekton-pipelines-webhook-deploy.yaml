@@ -6,12 +6,12 @@ metadata:
     app.kubernetes.io/instance: default
     app.kubernetes.io/name: webhook
     app.kubernetes.io/part-of: tekton-pipelines
-    app.kubernetes.io/version: v0.50.1
+    app.kubernetes.io/version: v0.51.0
       {{- with .Values.webhook.deployment.labels }}
         {{- toYaml . | nindent 4 }}
       {{- end}}
-    pipeline.tekton.dev/release: v0.50.1
-    version: v0.50.1
+    pipeline.tekton.dev/release: v0.51.0
+    version: v0.51.0
   name: tekton-pipelines-webhook
 spec:
   selector:
@@ -28,12 +28,12 @@ spec:
         app.kubernetes.io/instance: default
         app.kubernetes.io/name: webhook
         app.kubernetes.io/part-of: tekton-pipelines
-        app.kubernetes.io/version: v0.50.1
+        app.kubernetes.io/version: v0.51.0
           {{- with .Values.webhook.pod.labels }}
             {{- toYaml . | nindent 8 }}
           {{- end}}
-        pipeline.tekton.dev/release: v0.50.1
-        version: v0.50.1
+        pipeline.tekton.dev/release: v0.51.0
+        version: v0.51.0
     spec:
       affinity:
           {{- with .Values.webhook.affinity }}
@@ -80,7 +80,7 @@ spec:
         - secretRef:
             name: '{{ .Values.webhook.envFromSecret }}'
             optional: true
-        image: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/webhook:v0.50.1@sha256:c24c15e53902b90547d162876d9cffae6da83c07b9d2969e13a179d1cbfa48ad
+        image: gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/webhook:v0.51.0@sha256:92f255b33fb66b590b461285a0c2421c8a758003a84caea07a3350c825941e30
         livenessProbe:
           httpGet:
             path: /health
