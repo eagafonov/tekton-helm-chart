@@ -223,10 +223,12 @@ release: clean
 	helm gcs push ${NAME}*.tgz jx-labs --public
 	rm -rf ${NAME}*.tgz%
 
-publish:: clean build
-	cp tekton-*.tgz ${PAGES_REPO}
+publish: clean build copy-new-tarballs index
 
-publish:: index
+copy-new-tarballs:
+	for f in `find . -maxdepth 1 -mindepth 1 -type f -name "tekton-*.tgz"`; do \
+		test -f ${PAGES_REPO}/$$f || cp $$f ${PAGES_REPO}; \
+	done
 
 index:
 	helm repo index --url https://eagafonov.github.io/tekton-helm-chart ${PAGES_REPO}
