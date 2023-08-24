@@ -124,7 +124,7 @@ fetch-trigger:: .kustomize-trigger
 
 fetch-dashboard:: CHART_DIR:=charts/tekton-dashboard
 ifeq ($(DASHBOARD_VERSION),latest)
-fetch-dashboard:: MANIFEST_URL:=https://storage.googleapis.com/tekton-releases/dashboard/latest/release.yaml
+fetch-dashboard:: MANIFEST_URL:=https://storage.googleapis.com/tekton-releases/dashboard/latest/release-full.yaml
 else
 fetch-dashboard:: MANIFEST_URL:=https://storage.googleapis.com/tekton-releases/dashboard/previous/v${DASHBOARD_VERSION}/release.yaml
 endif
@@ -132,10 +132,14 @@ endif
 fetch-dashboard:: .import-templates-dashboard .update-app-version-dashboard
 
 fetch-dashboard::
+	# remove tekton-dashboard-ns.yaml
+	rm -r $(CHART_DIR)/templates/tekton-dashboard-ns.yaml
 	# Patch deployment command line args:
 	# --pipelines-namespace=tekton-pipelines
 	# --triggers-namespace=tekton-pipelines
 	sed -i 's/-namespace=tekton-pipelines/-namespace={{ .Release.Namespace }}/g' ${CHART_DIR}/templates/tekton-dashboard-deploy.yaml
+	# --read-only=false
+	sed -i 's/--read-only=.*/--read-only={{ .Values.readOnly }}/g' ${CHART_DIR}/templates/tekton-dashboard-deploy.yaml
 
 ##########################
 # Chart processing rules
@@ -198,10 +202,12 @@ install-operator: clean build-operator
 uninstall-operator:
 	helm uninstall --namespace tekton-operator tekton-operator
 
+DASHBOARD_VALUES_READ_ONLY?=true
+
 install: clean build
 	helm upgrade --install --namespace tekton-pipelines-test --create-namespace tekton-pipeline charts/tekton-pipeline
 	helm upgrade --install --namespace tekton-pipelines-test --create-namespace tekton-trigger charts/tekton-trigger
-	helm upgrade --install --namespace tekton-pipelines-test --create-namespace tekton-dashboard charts/tekton-dashboard
+	helm upgrade --install --namespace tekton-pipelines-test --create-namespace tekton-dashboard charts/tekton-dashboard --set readOnly=${DASHBOARD_VALUES_READ_ONLY}
 
 uninstall:
 	helm uninstall --namespace tekton-pipelines-test tekton-pipeline

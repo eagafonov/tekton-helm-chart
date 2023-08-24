@@ -37,3 +37,41 @@ rules:
       - get
       - list
       - watch
+  - apiGroups:
+      - ""
+    resources:
+      - serviceaccounts
+    verbs:
+      - get
+      - list
+      - watch
+{{ if not .Values.readOnly }}
+  - apiGroups:
+      - dashboard.tekton.dev
+    resources:
+      - extensions
+    verbs:
+      - create
+      - update
+      - delete
+      - patch
+  - apiGroups:
+      - tekton.dev
+    resources:
+      - clustertasks
+    verbs:
+      - create
+      - update
+      - delete
+      - patch
+  - apiGroups:
+      - triggers.tekton.dev
+    resources:
+      - clusterinterceptors
+      - clustertriggerbindings
+    verbs:
+      - create
+      - update
+      - delete
+      - patch
+{{ end }}

@@ -50,3 +50,31 @@ rules:
       - get
       - list
       - watch
+{{ if not .Values.readOnly }}
+  - apiGroups:
+      - tekton.dev
+    resources:
+      - tasks
+      - taskruns
+      - pipelines
+      - pipelineruns
+      - customruns
+    verbs:
+      - create
+      - update
+      - delete
+      - patch
+  - apiGroups:
+      - triggers.tekton.dev
+    resources:
+      - eventlisteners
+      - interceptors
+      - triggerbindings
+      - triggers
+      - triggertemplates
+    verbs:
+      - create
+      - update
+      - delete
+      - patch
+{{ end }}

@@ -36,7 +36,7 @@ spec:
             - --logout-url=
             - --pipelines-namespace={{ .Release.Namespace }}
             - --triggers-namespace={{ .Release.Namespace }}
-            - --read-only=true
+            - --read-only={{ .Values.readOnly }}
             - --log-level=info
             - --log-format=json
             - --namespace=
